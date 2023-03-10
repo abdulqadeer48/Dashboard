@@ -2,7 +2,7 @@ import React from 'react'
 import axios from "axios";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
-
+import Images from "../Images/img.jpg"
 function SignUp(e) {
 
   // USE OF HOOKS
@@ -17,7 +17,7 @@ function SignUp(e) {
     setEmail("");
     setPassword("");
 
-    const url = "http://localhost:1000/Signin";
+    const url = "http://localhost:1000/Signup";
 
     const headers = {
       "Content-Type": "application/json",
@@ -31,23 +31,27 @@ function SignUp(e) {
     axios
       .post(url, data, { headers })
       .then((res) => {
+        alert("submitted successfully")
         console.log(res.data);
       })
       .catch((err) => {
-        console.log("this is error");
+        console.log(err);
       });
   }
+ 
 
   return (
-    <>
-      <p className="mt-5 fw-bolder fs-1 text-center text-primary"> Sign Up  </p>
-      <div>
-        <p className='fs-3 text-center text-danger'>Note: The Website is under Development Stage</p>
-        <p className='fs-3 text-center '>To view Dashboard directly hit "/after" in searchbar</p>
+    <div className='container'>
+
+      <div style={{backroundImage:`url(${Images})`,height:"100%",width:"100%"}}>
+      <div className='text-center my-5'>
+       <p className='fs-1 fw-bolder'>SignUp</p>
       </div>
+      </div>
+      
 
       <div className="col-sm-6 offset-3" >
-        <form className="m-5">
+        <form className="bg-transparent m-5 ">
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
@@ -92,7 +96,7 @@ function SignUp(e) {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 

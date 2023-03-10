@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+// import Images from "./Images/img2"
 
 function LoginPage(e) {
   // USE OF HOOKS
@@ -14,8 +15,22 @@ function LoginPage(e) {
     e.preventDefault();
     setEmail("");
     setPassword("");
+    
+    useEffect(()=>{
+      axios
+      .post(url, data, { headers })
+      .then((res) => {
+        alert("login successfully")
 
-    const url = "http://localhost:1000/Signin";
+        console.log(res.data);
+      })
+      .catch((err) => {
+           
+        console.log(err);
+      })
+    },[])
+  }
+    const url = "localhost:1000/Signin";
 
     const headers = {
       "Content-Type": "application/json",
@@ -25,21 +40,14 @@ function LoginPage(e) {
       email: email,
       password: password,
     };
-
-    axios
-      .post(url, data, { headers })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log("this is error");
-      });
-  }
+  
 
   return (
-    <>
-      <p className="mt-5 fw-bolder fs-1 text-center text-primary"> Login </p>
+    <div className="container">
+       <div className='text-center my-5'>
+        <p className='fs-1 fw-bolder'>Login</p>
 
+      </div>
       <div className="col-sm-6 offset-3">
         <form className="m-5">
           <div className="mb-3">
@@ -71,9 +79,7 @@ function LoginPage(e) {
               id="exampleInputPassword1"
             />
           </div>
-          {/* <a href="/forget" className="form-item">
-            Forgot password?
-          </a> <br></br> */}
+
 
           <Link to="/signup" className="form-item">
             don't have an account create?
@@ -103,7 +109,8 @@ function LoginPage(e) {
           })}
         </ol>
       </div> */}
-    </>
+    
+    </div>
   );
 }
 
