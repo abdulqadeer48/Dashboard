@@ -15,7 +15,7 @@ function LoginPage(e) {
     e.preventDefault();
     setEmail("");
     setPassword("");
-    
+
     useEffect(()=>{
       axios
       .post(url, data, { headers })
@@ -95,7 +95,7 @@ function LoginPage(e) {
             LogIn
           </button>
         </form>
-      </div>
+      </div>  
 
       {/* <div>
         <ol>
